@@ -2,7 +2,6 @@
 
 use strict;
 use warnings;
-use utf8::all;
 use Test::More;
 use Test::Warnings;
 
@@ -50,4 +49,3 @@ my $org2 = 'Organization'->new(
 ok( ! $org2->boss->isa('Pontiff'), 'boss class with no __CLASS__' );
 
 done_testing;
-

@@ -2,7 +2,6 @@
 
 use strict;
 use warnings;
-use utf8::all;
 use Test::More;
 use Test::Exception;
 use Test::Warnings;
