@@ -10,7 +10,6 @@ our $VERSION   = '0.001';
 use B::Hooks::EndOfScope;
 use Exporter::Shiny our(@EXPORT) = qw(make_builder);
 use Lexical::Accessor;
-use PerlX::Maybe;
 use Sub::Name qw(subname);
 
 sub _generate_make_builder
@@ -29,7 +28,7 @@ sub _generate_make_builder
 		*{"$caller\::BUILD"} = sub {
 			my $self = shift;
 			my ($params) = @_;
-			$self->$storage({ map maybe($_ => $params->{$_}), @need_to_store });
+			$self->$storage({ map exists($params->{$_})?($_=>$params->{$_}):(), @need_to_store });
 			$self->$next(@_) if $next;
 		};
 		subname("$caller\::BUILD", \&{"$caller\::BUILD"});
@@ -45,7 +44,7 @@ sub _generate_make_builder
 		my $code = sub {
 			my $self    = shift;
 			my $storage = $self->$storage;
-			my %args    = map maybe($attrs{$_} => $storage->{$_}), keys(%attrs);
+			my %args    = map exists($storage->{$_})?($attrs{$_}=>$storage->{$_}):(), keys(%attrs);
 			my $bless   = exists($args{'__CLASS__'}) ? delete($args{'__CLASS__'}) : $klass;
 			
 			ref($bless) eq 'CODE'

@@ -40,13 +40,20 @@ subtest 'empty attr values' => sub {
 };
 
 subtest 'undef boss class' => sub {
-    test_org_object(
-        name       => 'Catholic Church',
-        boss_name  => 'Francis',
-        boss_title => 'Pope',
-        boss_class => undef,
-        hq_name    => 'Rome',
-    );
+    
+    my $org;
+    lives_ok {
+        $org = Organization->new(
+            name       => 'Catholic Church',
+            boss_name  => 'Francis',
+            boss_title => 'Pope',
+            boss_class => '',
+            hq_name    => 'Rome',
+        )
+    } 'org created with empty boss class';
+    
+    throws_ok { $org->boss }
+      qr/^Can't call method "new"/;
 };
 
 subtest 'empty boss class' => sub {

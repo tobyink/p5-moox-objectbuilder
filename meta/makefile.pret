@@ -6,7 +6,6 @@
 	:runtime-requirement    [ :on "B::Hooks::EndOfScope"^^:CpanId ];
 	:runtime-requirement    [ :on "Exporter::Shiny"^^:CpanId ];
 	:runtime-requirement    [ :on "Lexical::Accessor"^^:CpanId ];
-	:runtime-requirement    [ :on "PerlX::Maybe"^^:CpanId ];
 	:runtime-requirement    [ :on "Sub::Name"^^:CpanId ];
 	:runtime-recommendation [ :on "PerlX::Maybe::XS"^^:CpanId ];
 	:test-requirement       [ :on "Test::More 0.96"^^:CpanId ];
