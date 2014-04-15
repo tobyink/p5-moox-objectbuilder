@@ -24,12 +24,13 @@ isa_ok( $org->boss, 'Pontiff' );
 isa_ok( $org->headquarters, 'Place' );
 
 my $test_attr_objects = sub {
+    plan tests => 3;
     is( $org->boss->name, 'Francis', 'boss name' );
     is( $org->boss->title, 'Pope', 'boss title' );
     is( $org->headquarters->name, 'Rome', 'HQ name' );
 };
 
-subtest 'attribute object properties' => sub {  $test_attr_objects->() };
+subtest 'attribute object properties' => $test_attr_objects;
 
 $org->clear_boss;
 $org->clear_headquarters;
@@ -37,4 +38,4 @@ $org->clear_headquarters;
 ok( ! $org->has_boss, 'boss cleared' );
 ok( ! $org->has_headquarters, 'headquarters cleared' );
 
-subtest 'attribute object properties after recreation' => sub {  $test_attr_objects->() };
+subtest 'attribute object properties after recreation' => $test_attr_objects;
