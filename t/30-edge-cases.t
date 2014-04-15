@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use Test::More;
-use Test::Exception;
+use Test::Fatal;
 use Test::Warnings;
 
 use t::lib::TestUtils;
@@ -41,7 +41,7 @@ subtest 'empty attr values' => sub {
 subtest 'undef boss class' => sub {
     
     my $org;
-    lives_ok {
+    is(exception {
         $org = Organization->new(
             name       => 'Catholic Church',
             boss_name  => 'Francis',
@@ -49,16 +49,16 @@ subtest 'undef boss class' => sub {
             boss_class => '',
             hq_name    => 'Rome',
         )
-    } 'org created with empty boss class';
+    }, undef, 'org created with empty boss class');
     
-    throws_ok { $org->boss }
-      qr/^Can't call method "new"/;
+    like(exception { $org->boss },
+      qr/\ACan't call method "new"/);
 };
 
 subtest 'empty boss class' => sub {
 
     my $org;
-    lives_ok {
+    is(exception {
         $org = Organization->new(
             name       => 'Catholic Church',
             boss_name  => 'Francis',
@@ -66,11 +66,11 @@ subtest 'empty boss class' => sub {
             boss_class => '',
             hq_name    => 'Rome',
         )
-    } 'org created with empty boss class';
+    }, undef, 'org created with empty boss class');
 
-    throws_ok { $org->boss }
-        qr/^Can't call method "new" without a package or object/,
-        'error on accessing boss with empty class';
+    like(exception { $org->boss },
+        qr/\ACan't call method "new" without a package or object/,
+        'error on accessing boss with empty class');
 
 };
 
