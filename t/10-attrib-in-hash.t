@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 9;
+use Test::More tests => 10;
 use Test::FailWarnings;
 
 use t::lib::TestUtils;
@@ -30,7 +30,7 @@ my $test_attr_objects = sub {
     is( $org->headquarters->name, 'Rome', 'HQ name' );
 };
 
-subtest 'attribute object properties' => $test_attr_objects;
+subtest 'object attributes' => $test_attr_objects;
 
 $org->clear_boss;
 $org->clear_headquarters;
@@ -38,4 +38,13 @@ $org->clear_headquarters;
 ok( ! $org->has_boss, 'boss cleared' );
 ok( ! $org->has_headquarters, 'headquarters cleared' );
 
-subtest 'attribute object properties after recreation' => $test_attr_objects;
+subtest 'object attributes after recreation' => $test_attr_objects;
+
+my $org2 = 'Organization'->new(
+    name       => 'Catholic Church',
+    boss_name  => 'Francis',
+    boss_title => 'Pope',
+    hq_name    => 'Rome',
+);
+
+ok( ! $org2->boss->isa('Pontiff'), 'boss class with no __CLASS__' );
