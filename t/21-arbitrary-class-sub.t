@@ -3,8 +3,8 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 3;
-use Test::FailWarnings;
+use Test::More;
+use Test::Warnings;
 use Test::Output;
 
 use t::lib::TestUtils;
@@ -20,3 +20,5 @@ my $org = 'Organization'->new(
 isa_ok( $org, 'Organization' );
 stdout_is { $org->boss } 'Hi there!', 'class code executed';
 ok( ! defined($org->boss), 'boss not built' );
+
+done_testing;

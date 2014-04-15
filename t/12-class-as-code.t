@@ -3,8 +3,8 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 6;
-use Test::FailWarnings;
+use Test::More;
+use Test::Warnings;
 
 use t::lib::TestUtils;
 
@@ -45,3 +45,5 @@ isa_ok( Organization->new(%org_args)->boss, 'HolyMan',
         'object class of a new object again' );
 isa_ok( Organization->new(%org_args)->boss, 'Pontiff',
         'and object class of another new object again' );
+
+done_testing;

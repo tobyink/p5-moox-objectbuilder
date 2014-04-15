@@ -3,9 +3,9 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 4;
+use Test::More;
 use Test::Exception;
-use Test::FailWarnings;
+use Test::Warnings;
 
 use t::lib::TestUtils;
 
@@ -84,3 +84,5 @@ subtest 'attr values 0' => sub {
         hq_name    => 0,
     );
 };
+
+done_testing;

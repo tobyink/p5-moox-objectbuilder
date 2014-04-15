@@ -3,8 +3,8 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 10;
-use Test::FailWarnings;
+use Test::More;
+use Test::Warnings;
 
 use t::lib::TestUtils;
 
@@ -48,3 +48,6 @@ my $org2 = 'Organization'->new(
 );
 
 ok( ! $org2->boss->isa('Pontiff'), 'boss class with no __CLASS__' );
+
+done_testing;
+

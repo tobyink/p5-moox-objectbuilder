@@ -3,8 +3,8 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 6;
-use Test::FailWarnings;
+use Test::More;
+use Test::Warnings;
 
 use t::lib::TestUtils;
 
@@ -44,3 +44,5 @@ ok( ! $org->has_boss, 'boss cleared' );
 ok( ! $org->has_headquarters, 'headquarters cleared' );
 
 subtest 'attribute object properties after recreation' => $test_attr_objects;
+
+done_testing;

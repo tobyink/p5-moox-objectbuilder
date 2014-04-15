@@ -3,8 +3,8 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::More tests => 6;
-use Test::FailWarnings;
+use Test::More;
+use Test::Warnings;
 
 use t::lib::TestUtils;
 
@@ -54,3 +54,5 @@ $book->clear_author;
 ok( ! $book->has_author, 'author cleared' );
 
 subtest 'attribute object properties after recreation' => sub {  $test_attr_objects->() };
+
+done_testing;
