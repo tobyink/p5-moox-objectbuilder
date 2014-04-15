@@ -17,10 +17,10 @@ sub _generate_make_builder
 {
 	my $me = shift;
 	my ($name, $args, $globals) = @_;
-	
+
 	lexical_has(accessor => \(my $storage));
 	my @need_to_store;
-	
+
 	my $caller = $globals->{into};
 	# around BUILD
 	on_scope_end {
@@ -34,7 +34,7 @@ sub _generate_make_builder
 		};
 		subname("$caller\::BUILD", \&{"$caller\::BUILD"});
 	};
-	
+
 	return sub { # make_builder
 		my $klass = shift;
 		my %attrs =
@@ -47,7 +47,7 @@ sub _generate_make_builder
 			my $storage = $self->$storage;
 			my %args    = map maybe($attrs{$_} => $storage->{$_}), keys(%attrs);
 			my $bless   = exists($args{'__CLASS__'}) ? delete($args{'__CLASS__'}) : $klass;
-			
+
 			ref($bless) eq 'CODE'
 				? $bless->(\%args)
 				: $bless->new(\%args);
@@ -72,15 +72,15 @@ MooX::ObjectBuilder - lazy construction of objects from extra init args
 
    package Person {
       use Moo;
-      
+
       has name  => (is => "ro");
       has title => (is => "ro");
    }
-   
+
    package Organization {
       use Moo;
       use MooX::ObjectBuilder;
-      
+
       has name => (is => "ro");
       has boss => (
          is => make_builder(
@@ -91,13 +91,13 @@ MooX::ObjectBuilder - lazy construction of objects from extra init args
          ),
       );
    }
-   
+
    my $org = Organization->new(
       name       => "Catholic Church",
       boss_name  => "Francis",
       boss_title => "Pope",
    );
-   
+
    use Data::Dumper;
    print Dumper( $org->boss );
 
@@ -208,4 +208,3 @@ the same terms as the Perl 5 programming language system itself.
 THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
 WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-
