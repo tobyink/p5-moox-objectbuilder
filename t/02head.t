@@ -44,9 +44,10 @@ use Test::More;
 	package Face;
 	use Moo;
 	use MooX::ObjectBuilder;
+	my $mouth_builder = make_builder( Mouth => {} );
 	has left_eye   => (is => make_builder( Eye => {eye_colour=>'colour',left_eye_class=>'__CLASS__'} ));
 	has right_eye  => (is => make_builder( Eye => {eye_colour=>'colour',right_eye_class=>'__CLASS__'} ));
-	has mouth      => (is => make_builder( Mouth => {} ));
+	has mouth      => (is => 'lazy', builder => $mouth_builder);
 	has expression => (is => 'ro');
 }
 
