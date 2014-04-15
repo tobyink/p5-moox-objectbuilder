@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use utf8::all;
-use Test::Most tests => 9;
+use Test::More tests => 9;
 use Test::FailWarnings;
 
 use t::lib::TestUtils;
