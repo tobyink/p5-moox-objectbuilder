@@ -3,6 +3,7 @@
 @prefix : <http://ontologi.es/doap-deps#>.
 
 `MooX-ObjectBuilder`
+	:runtime-requirement    [ :on "perl 5.008"^^:CpanId ];
 	:runtime-requirement    [ :on "B::Hooks::EndOfScope"^^:CpanId ];
 	:runtime-requirement    [ :on "Exporter::Shiny"^^:CpanId ];
 	:runtime-requirement    [ :on "Lexical::Accessor"^^:CpanId ];
