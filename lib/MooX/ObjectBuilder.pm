@@ -63,6 +63,8 @@ __END__
 
 =encoding utf-8
 
+=for stopwords Torbjørn
+
 =head1 NAME
 
 MooX::ObjectBuilder - lazy construction of objects from extra init args
