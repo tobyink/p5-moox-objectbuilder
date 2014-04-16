@@ -11,6 +11,7 @@
 	:repository           [ a :GitRepository; :browse <https://github.com/tobyink/p5-moox-objectbuilder> ];
 	:created              2014-04-15;
 	:license              <http://dev.perl.org/licenses/>;
+	:tester               cpan:TORBJORN;
 	:maintainer           cpan:TOBYINK;
 	:developer            cpan:TOBYINK.
 

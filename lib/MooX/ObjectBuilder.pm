@@ -195,6 +195,13 @@ etc.
 
 Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
+=head1 CREDITS
+
+Most of the test suite was written by Torbjørn Lindahl (cpan:TORBJORN).
+
+Various advice was given by Graham Knop (cpan:HAARG) and Matt S Trout
+(cpan:MSTROUT).
+
 =head1 COPYRIGHT AND LICENCE
 
 This software is copyright (c) 2014 by Toby Inkster.
@@ -207,4 +214,3 @@ the same terms as the Perl 5 programming language system itself.
 THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
 WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-
