@@ -7,7 +7,7 @@ BEGIN { if ($] < 5.010000) { require UNIVERSAL::DOES } };
 package MooX::ObjectBuilder;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 use B::Hooks::EndOfScope;
 use Exporter::Shiny our(@EXPORT) = qw(make_builder);
