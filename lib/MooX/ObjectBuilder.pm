@@ -2,6 +2,8 @@ use 5.008;
 use strict;
 use warnings;
 
+BEGIN { if ($] < 5.010000) { require UNIVERSAL::DOES } };
+
 package MooX::ObjectBuilder;
 
 our $AUTHORITY = 'cpan:TOBYINK';
@@ -10,6 +12,7 @@ our $VERSION   = '0.001';
 use B::Hooks::EndOfScope;
 use Exporter::Shiny our(@EXPORT) = qw(make_builder);
 use Lexical::Accessor;
+use MooseX::ConstructInstance -with;
 use Sub::Name qw(subname);
 
 sub _generate_make_builder
@@ -47,9 +50,9 @@ sub _generate_make_builder
 			my %args    = map exists($storage->{$_})?($attrs{$_}=>$storage->{$_}):(), keys(%attrs);
 			my $bless   = exists($args{'__CLASS__'}) ? delete($args{'__CLASS__'}) : $klass;
 			
-			ref($bless) eq 'CODE'
-				? $bless->(\%args)
-				: $bless->new(\%args);
+			$self->DOES('MooseX::ConstructInstance')
+				? $self->construct_instance($bless, \%args)
+				: MooX::ObjectBuilder->construct_instance($bless, \%args);
 		};
 		wantarray ? ('lazy', builder => $code) : $code;
 	}
@@ -179,6 +182,12 @@ and L<Mouse> classes:
       default => scalar make_builder($class, {...}),
    );
 
+=head2 MooseX::ConstructInstance
+
+If your object does the L<MooseX::ConstructInstance> role, then this
+module will automatically do the right thing and delegate to that for
+the actual object construction.
+
 =head1 BUGS
 
 Please report any bugs to
@@ -187,6 +196,8 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=MooX-ObjectBuilder>.
 =head1 SEE ALSO
 
 L<Moo>, L<Moose>, L<Mouse>.
+
+L<MooseX::ConstructInstance>.
 
 L<MooX::LazyRequire>,
 L<MooseX::LazyRequire>,

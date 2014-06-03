@@ -8,10 +8,11 @@
 	:runtime-requirement    [ :on "Exporter::Shiny"^^:CpanId ];
 	:runtime-requirement    [ :on "Lexical::Accessor"^^:CpanId ];
 	:runtime-requirement    [ :on "Sub::Name"^^:CpanId ];
+	:runtime-requirement    [ :on "MooseX::ConstructInstance"^^:CpanId ];
 	:test-requirement       [ :on "Test::More 0.96"^^:CpanId ];
 	:test-requirement       [ :on "Test::Warnings"^^:CpanId ];
 	:test-requirement       [ :on "Test::Fatal"^^:CpanId ];
 	:test-requirement       [ :on "Moo"^^:CpanId ];
-	:develop-recommendation [ :on "Dist::Inkt 0.001"^^:CpanId ];
+	:develop-recommendation [ :on "Dist::Inkt::Profile::TOBYINK"^^:CpanId ];
 	.
 
